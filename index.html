@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/jquery-3.2.1.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="800" height="800"></canvas>
+<input type="file" id="file" name="file" webkitdirectory>
+<!--<input type="file" id="file" name="file" multiple>-->
+<button class="submit">确定</button>
+<button class="ck">查看上传数量</button>
+
+<script>
+    let assets = {};
+    let index = 0;
+    $('.ck').click(() => {
+        console.log("上传数量：" + index)
+    })
+    $('#file').change(() => {
+        let files = $('#file')[0].files;
+        for (let i = 0; i < files.length; i++) {
+            let reader = new FileReader();
+            reader.readAsDataURL(files[i])
+            reader.onload = () => {
+                let name = files[i].name.split('-')[0];
+                if (assets[name]) {
+                    assets[name].push(reader.result)
+                } else {
+                    assets[name] = [];
+                    assets[name].push(reader.result)
+                }
+                index++;
+            }
+        }
+    })
+
+    let canvas = $('#canvas')[0];
+    let ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    let bigImg = 380;
+    let imgWH = 230;
+
+    let assetsIndex = 0;
+    $('.submit').click(() => {
+        pd();
+    })
+
+    function pd() {
+        if (assets[Object.keys(assets)[assetsIndex]].length === 1) {
+            let img1 = new Image();
+            img1.src = assets[Object.keys(assets)[assetsIndex]][0];
+            img1.onload = () => {
+                ctx.drawImage(img1, canvas.width / 2 - bigImg / 2, 60, bigImg, bigImg)
+                ctx.drawImage(img1, 20, 500, imgWH, imgWH)
+                ctx.drawImage(img1, canvas.width / 2 - imgWH / 2, 500, imgWH, imgWH)
+                ctx.drawImage(img1, 800 - 20 - imgWH, 500, imgWH, imgWH);
+                load(Object.keys(assets)[assetsIndex])
+            }
+        }
+        if (assets[Object.keys(assets)[assetsIndex]].length === 2) {
+            let img1 = new Image();
+            img1.src = assets[Object.keys(assets)[assetsIndex]][0];
+            let img2 = new Image();
+            img2.src = assets[Object.keys(assets)[assetsIndex]][1];
+            let img3 = img1;
+            let img4 = img2;
+            img2.onload = () => {
+                ctx.drawImage(img1, canvas.width / 2 - bigImg / 2, 60, bigImg, bigImg)
+                ctx.drawImage(img2, 20, 500, imgWH, imgWH)
+                ctx.drawImage(img3, canvas.width / 2 - imgWH / 2, 500, imgWH, imgWH)
+                ctx.drawImage(img4, 800 - 20 - imgWH, 500, imgWH, imgWH);
+                load(Object.keys(assets)[assetsIndex])
+            }
+        }
+        if (assets[Object.keys(assets)[assetsIndex]].length === 3) {
+            let img1 = new Image();
+            img1.src = assets[Object.keys(assets)[assetsIndex]][0];
+            let img2 = new Image();
+            img2.src = assets[Object.keys(assets)[assetsIndex]][1];
+            let img3 = new Image();
+            img3.src = assets[Object.keys(assets)[assetsIndex]][2];
+            let img4 = img2;
+            img3.onload = () => {
+                ctx.drawImage(img1, canvas.width / 2 - bigImg / 2, 60, bigImg, bigImg)
+                ctx.drawImage(img2, 20, 500, imgWH, imgWH)
+                ctx.drawImage(img3, canvas.width / 2 - imgWH / 2, 500, imgWH, imgWH)
+                ctx.drawImage(img4, 800 - 20 - imgWH, 500, imgWH, imgWH);
+                load(Object.keys(assets)[assetsIndex])
+            }
+        }
+        if (assets[Object.keys(assets)[assetsIndex]].length >= 4) {
+            let img1 = new Image();
+            img1.src = assets[Object.keys(assets)[assetsIndex]][0];
+            let img2 = new Image();
+            img2.src = assets[Object.keys(assets)[assetsIndex]][1];
+            let img3 = new Image();
+            img3.src = assets[Object.keys(assets)[assetsIndex]][2];
+            let img4 = new Image();
+            img4.src = assets[Object.keys(assets)[assetsIndex]][3];
+            img4.onload = () => {
+                ctx.drawImage(img1, canvas.width / 2 - bigImg / 2, 60, bigImg, bigImg)
+                ctx.drawImage(img2, 20, 500, imgWH, imgWH)
+                ctx.drawImage(img3, canvas.width / 2 - imgWH / 2, 500, imgWH, imgWH)
+                ctx.drawImage(img4, 800 - 20 - imgWH, 500, imgWH, imgWH);
+                load(Object.keys(assets)[assetsIndex])
+            }
+        }
+    }
+
+    function load(name) {
+        let a = document.createElement('a');
+        a.href = canvas.toDataURL("image/jpg");
+        a.download = name + '.jpg';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a)
+        assetsIndex++;
+        setTimeout(() => {
+            pd();
+        }, 500)
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+</script>
+
+</body>
+</html>
