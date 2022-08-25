@@ -14,15 +14,15 @@
         }
 
         canvas {
-            display: none;
+            /*display: none;*/
             border: 1px solid black;
         }
     </style>
 </head>
 <body>
 <canvas id="canvas" width="800" height="800"></canvas>
-<!--<input type="file" id="file" name="file">-->
-<input type="file" id="file" name="file" webkitdirectory>
+<input type="file" id="file" name="file">
+<!--<input type="file" id="file" name="file" webkitdirectory>-->
 <!--<input type="file" id="file" name="file" multiple>-->
 <button class="submit">确定</button>
 <button class="ck">查看上传数量</button>
@@ -65,13 +65,13 @@
 
     function pd() {
         if (assets[Object.keys(assets)[assetsIndex]].length === 1) {
-            let random = ~~(Math.random() * 4);
+            let random = ~~(Math.random() * 6);
             if (random === 0) {
                 let img1 = new Image();
                 img1.src = assets[Object.keys(assets)[assetsIndex]][0];
                 img1.onload = () => {
-                    ctx.drawImage(img1, canvas.width / 2 - bigImg / 2, 20, bigImg, bigImg);
-                    ctx.drawImage(img1, canvas.width / 2 - bigImg / 2, 400, bigImg, bigImg);
+                    ctx.drawImage(img1, canvas.width / 2 - bigImg / 2, 40, bigImg * .9, bigImg * .9);
+                    ctx.drawImage(img1, canvas.width / 2 - bigImg / 2, 420, bigImg * .9, bigImg * .9);
                     load(Object.keys(assets)[assetsIndex]);
                 }
             }
@@ -79,9 +79,9 @@
                 let img1 = new Image();
                 img1.src = assets[Object.keys(assets)[assetsIndex]][0];
                 img1.onload = () => {
-                    ctx.drawImage(img1, 40, 90, bigImg * .8, bigImg * .8);
-                    ctx.drawImage(img1, 40 + bigImg, 90, bigImg * .8, bigImg * .8);
-                    ctx.drawImage(img1, canvas.width / 2 - bigImg * .8 / 2, 450, bigImg * .8, bigImg * .8);
+                    ctx.drawImage(img1, 10, 10, bigImg, bigImg);
+                    ctx.drawImage(img1, 30 + bigImg, 10, bigImg, bigImg);
+                    ctx.drawImage(img1, canvas.width / 2 - bigImg * .8 / 2, 410, bigImg, bigImg);
                     load(Object.keys(assets)[assetsIndex]);
                 }
             }
@@ -89,11 +89,11 @@
                 let img1 = new Image();
                 img1.src = assets[Object.keys(assets)[assetsIndex]][0];
                 img1.onload = () => {
-                    ctx.drawImage(img1, 80, 40, imgWH, imgWH);
-                    ctx.drawImage(img1, 80, 285, imgWH, imgWH);
-                    ctx.drawImage(img1, 80, 525, imgWH, imgWH);
-                    ctx.drawImage(img1, 420, 80, bigImg * .8, bigImg * .8);
-                    ctx.drawImage(img1, 420, 420, bigImg * .8, bigImg * .8);
+                    ctx.drawImage(img1, 60, 40, imgWH, imgWH);
+                    ctx.drawImage(img1, 60, 285, imgWH, imgWH);
+                    ctx.drawImage(img1, 60, 525, imgWH, imgWH);
+                    ctx.drawImage(img1, 360, 40, bigImg * .9, bigImg * .9);
+                    ctx.drawImage(img1, 360, 410, bigImg * .9, bigImg * .9);
                     load(Object.keys(assets)[assetsIndex]);
                 }
             }
@@ -101,12 +101,36 @@
                 let img1 = new Image();
                 img1.src = assets[Object.keys(assets)[assetsIndex]][0];
                 img1.onload = () => {
-                    ctx.drawImage(img1, 440, 40, imgWH, imgWH)
-                    ctx.drawImage(img1, 440, 285, imgWH, imgWH)
-                    ctx.drawImage(img1, 440, 525, imgWH, imgWH)
-                    ctx.drawImage(img1, 80, 80, bigImg * .8, bigImg * .8)
-                    ctx.drawImage(img1, 80, 420, bigImg * .8, bigImg * .8)
-                    load(Object.keys(assets)[assetsIndex])
+                    ctx.drawImage(img1, 440, 40, imgWH, imgWH);
+                    ctx.drawImage(img1, 440, 285, imgWH, imgWH);
+                    ctx.drawImage(img1, 440, 525, imgWH, imgWH);
+                    ctx.drawImage(img1, 60, 40, bigImg * .9, bigImg * .9);
+                    ctx.drawImage(img1, 60, 410, bigImg * .9, bigImg * .9);
+                    load(Object.keys(assets)[assetsIndex]);
+                }
+            }
+            if (random === 4){
+                let img1 = new Image();
+                img1.src = assets[Object.keys(assets)[assetsIndex]][0];
+                img1.onload = () => {
+                    ctx.drawImage(img1, 40, 100, imgWH, imgWH);
+                    ctx.drawImage(img1, 280, 100, imgWH, imgWH);
+                    ctx.drawImage(img1, 520, 100, imgWH, imgWH);
+                    ctx.drawImage(img1, 40, 380, bigImg * .9, bigImg * .9);
+                    ctx.drawImage(img1, 400, 380, bigImg * .9, bigImg * .9);
+                    load(Object.keys(assets)[assetsIndex]);
+                }
+            }
+            if (random === 5){
+                let img1 = new Image();
+                img1.src = assets[Object.keys(assets)[assetsIndex]][0];
+                img1.onload = () => {
+                    ctx.drawImage(img1, 40, 480, imgWH, imgWH);
+                    ctx.drawImage(img1, 280, 480, imgWH, imgWH);
+                    ctx.drawImage(img1, 520, 480, imgWH, imgWH);
+                    ctx.drawImage(img1, 40, 100, bigImg * .9, bigImg * .9);
+                    ctx.drawImage(img1, 400, 100, bigImg * .9, bigImg * .9);
+                    load(Object.keys(assets)[assetsIndex]);
                 }
             }
         }
