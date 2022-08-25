@@ -15,11 +15,13 @@
 
         canvas {
             display: none;
+            border: 1px solid black;
         }
     </style>
 </head>
 <body>
 <canvas id="canvas" width="800" height="800"></canvas>
+<!--<input type="file" id="file" name="file">-->
 <input type="file" id="file" name="file" webkitdirectory>
 <!--<input type="file" id="file" name="file" multiple>-->
 <button class="submit">确定</button>
@@ -63,14 +65,49 @@
 
     function pd() {
         if (assets[Object.keys(assets)[assetsIndex]].length === 1) {
-            let img1 = new Image();
-            img1.src = assets[Object.keys(assets)[assetsIndex]][0];
-            img1.onload = () => {
-                ctx.drawImage(img1, canvas.width / 2 - bigImg / 2, 60, bigImg, bigImg)
-                ctx.drawImage(img1, 20, 500, imgWH, imgWH)
-                ctx.drawImage(img1, canvas.width / 2 - imgWH / 2, 500, imgWH, imgWH)
-                ctx.drawImage(img1, 800 - 20 - imgWH, 500, imgWH, imgWH);
-                load(Object.keys(assets)[assetsIndex])
+            let random = ~~(Math.random() * 4);
+            if (random === 0) {
+                let img1 = new Image();
+                img1.src = assets[Object.keys(assets)[assetsIndex]][0];
+                img1.onload = () => {
+                    ctx.drawImage(img1, canvas.width / 2 - bigImg / 2, 20, bigImg, bigImg);
+                    ctx.drawImage(img1, canvas.width / 2 - bigImg / 2, 400, bigImg, bigImg);
+                    load(Object.keys(assets)[assetsIndex]);
+                }
+            }
+            if (random === 1) {
+                let img1 = new Image();
+                img1.src = assets[Object.keys(assets)[assetsIndex]][0];
+                img1.onload = () => {
+                    ctx.drawImage(img1, 40, 90, bigImg * .8, bigImg * .8);
+                    ctx.drawImage(img1, 40 + bigImg, 90, bigImg * .8, bigImg * .8);
+                    ctx.drawImage(img1, canvas.width / 2 - bigImg * .8 / 2, 450, bigImg * .8, bigImg * .8);
+                    load(Object.keys(assets)[assetsIndex]);
+                }
+            }
+            if (random === 2) {
+                let img1 = new Image();
+                img1.src = assets[Object.keys(assets)[assetsIndex]][0];
+                img1.onload = () => {
+                    ctx.drawImage(img1, 80, 40, imgWH, imgWH);
+                    ctx.drawImage(img1, 80, 285, imgWH, imgWH);
+                    ctx.drawImage(img1, 80, 525, imgWH, imgWH);
+                    ctx.drawImage(img1, 420, 80, bigImg * .8, bigImg * .8);
+                    ctx.drawImage(img1, 420, 420, bigImg * .8, bigImg * .8);
+                    load(Object.keys(assets)[assetsIndex]);
+                }
+            }
+            if (random === 3){
+                let img1 = new Image();
+                img1.src = assets[Object.keys(assets)[assetsIndex]][0];
+                img1.onload = () => {
+                    ctx.drawImage(img1, 440, 40, imgWH, imgWH)
+                    ctx.drawImage(img1, 440, 285, imgWH, imgWH)
+                    ctx.drawImage(img1, 440, 525, imgWH, imgWH)
+                    ctx.drawImage(img1, 80, 80, bigImg * .8, bigImg * .8)
+                    ctx.drawImage(img1, 80, 420, bigImg * .8, bigImg * .8)
+                    load(Object.keys(assets)[assetsIndex])
+                }
             }
         }
         if (assets[Object.keys(assets)[assetsIndex]].length === 2) {
