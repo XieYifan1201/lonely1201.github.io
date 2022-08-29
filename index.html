@@ -62,17 +62,10 @@
 
     function pd() {
         if (assets[Object.keys(assets)[assetsIndex]].length === 1) {
-            let random = ~~(Math.random() * 6);
+            let random = ~~(Math.random() * 5);
             let img1 = new Image();
             img1.src = assets[Object.keys(assets)[assetsIndex]][0];
             if (random === 0) {
-                img1.onload = () => {
-                    ctx.drawImage(img1, canvas.width / 2 - bigImg / 2, 40, bigImg * .9, bigImg * .9);
-                    ctx.drawImage(img1, canvas.width / 2 - bigImg / 2, 420, bigImg * .9, bigImg * .9);
-                    load(Object.keys(assets)[assetsIndex]);
-                }
-            }
-            if (random === 1) {
                 img1.onload = () => {
                     ctx.drawImage(img1, 10, 10, bigImg, bigImg);
                     ctx.drawImage(img1, 30 + bigImg, 10, bigImg, bigImg);
@@ -80,7 +73,7 @@
                     load(Object.keys(assets)[assetsIndex]);
                 }
             }
-            if (random === 2) {
+            if (random === 1) {
                 img1.onload = () => {
                     ctx.drawImage(img1, 60, 40, imgWH, imgWH);
                     ctx.drawImage(img1, 60, 285, imgWH, imgWH);
@@ -90,7 +83,7 @@
                     load(Object.keys(assets)[assetsIndex]);
                 }
             }
-            if (random === 3) {
+            if (random === 2) {
                 img1.onload = () => {
                     ctx.drawImage(img1, 440, 40, imgWH, imgWH);
                     ctx.drawImage(img1, 440, 285, imgWH, imgWH);
@@ -100,7 +93,7 @@
                     load(Object.keys(assets)[assetsIndex]);
                 }
             }
-            if (random === 4) {
+            if (random === 3) {
                 img1.onload = () => {
                     ctx.drawImage(img1, 40, 100, imgWH, imgWH);
                     ctx.drawImage(img1, 280, 100, imgWH, imgWH);
@@ -110,7 +103,7 @@
                     load(Object.keys(assets)[assetsIndex]);
                 }
             }
-            if (random === 5) {
+            if (random === 4) {
                 img1.onload = () => {
                     ctx.drawImage(img1, 40, 480, imgWH, imgWH);
                     ctx.drawImage(img1, 280, 480, imgWH, imgWH);
